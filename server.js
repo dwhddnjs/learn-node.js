@@ -1,6 +1,15 @@
-const express = require('express')
-const app = express()
+const express = require("express");
+const server = express();
 
-app.listen(5000, function(){
-    console.log('server on')
-})
+server.get("/", (req, res) => {
+  res.send("<h1>hihi</h1>");
+});
+
+server.get("/host", (req, res) => {
+  res.send("<h1>we got a host</h1>");
+});
+
+server.listen(5000, function (err) {
+  if (err) return console.log(err);
+  console.log("server on");
+});
