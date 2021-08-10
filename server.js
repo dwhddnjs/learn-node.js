@@ -9,6 +9,10 @@ server.get("/host", (req, res) => {
   res.send("<h1>we got a host</h1>");
 });
 
+server.get("/post", (req, res) => {
+  res.send("<h1>post we got that</h1>");
+});
+
 server.listen(5000, function (err) {
   if (err) return console.log(err);
   console.log("server on");
