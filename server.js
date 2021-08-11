@@ -1,12 +1,7 @@
 const express = require("express");
 const server = express();
 
-server.use((req, res, next) => {
-  req.user = {
-    id: "1234",
-  };
-  next();
-});
+server.use(express.static(__dirname + "/public"));
 
 server.get("/", (req, res) => {
   console.log(req.user);
