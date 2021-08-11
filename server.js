@@ -1,16 +1,24 @@
 const express = require("express");
 const server = express();
 
+server.use((req, res, next) => {
+  req.user = {
+    id: "1234",
+  };
+  next();
+});
+
 server.get("/", (req, res) => {
-  res.send("<h1>hihi</h1>");
+  console.log(req.user);
+  res.sendFile(__dirname + "/index.html");
 });
 
-server.get("/host", (req, res) => {
-  res.send("<h1>we got a host</h1>");
+server.get("/about", (req, res) => {
+  res.sendFile(__dirname + "/about.html");
 });
 
-server.get("/post", (req, res) => {
-  res.send("<h1>post we got that</h1>");
+server.use((req, res) => {
+  res.sendFile(__dirname + "/404.html");
 });
 
 server.listen(5000, function (err) {
