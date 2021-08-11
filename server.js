@@ -1,20 +1,19 @@
 const express = require("express");
+const hbs = require("express-handlebars");
+
 const server = express();
 
+server.engine(
+  "hbs",
+  hbs({
+    extname: "hbs",
+    defaultLayout: "layout.hbs",
+    partialsDir: "partials",
+  })
+);
+
+server.set("view engine", "hbs");
 server.use(express.static(__dirname + "/public"));
-
-server.get("/", (req, res) => {
-  console.log(req.user);
-  res.sendFile(__dirname + "/index.html");
-});
-
-server.get("/about", (req, res) => {
-  res.sendFile(__dirname + "/about.html");
-});
-
-server.use((req, res) => {
-  res.sendFile(__dirname + "/404.html");
-});
 
 server.listen(5000, function (err) {
   if (err) return console.log(err);
